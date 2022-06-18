@@ -16,7 +16,7 @@ Preencha os dados abaixo para identificar a autoria do trabalho.
 
 **Special members (21 credits)**
 - [x] Regular constructor (3 credits)
-- [ ] Destructor (3 credits)
+- [x] Destructor (3 credits)
 - [x] Copy constructor (3 credits)
 - [x] Constructor from range (3 credits)
 - [x] Constructor from initialize list (3 credits)
@@ -37,11 +37,11 @@ Preencha os dados abaixo para identificar a autoria do trabalho.
 - [x] `clear()` (1 credits)
 - [x] `push_back()` (3 credits)
 - [x] `pop_back()` (3 credits)
-- [ ] `insert()` \times 6 (18 credits)
-- [ ] `reserve()` (3 credits)
+- [x] `insert()` \times 6 (18 credits)
+- [x] `reserve()` (3 credits)
 - [x] `shrink_to_fit()` (3 credits)
 - [x] `assign()` \times 3 (9 credits)
-- [ ] `erase()` \times 4 (12 credits)
+- [x] `erase()` \times 4 (12 credits)
 
 **Element access methods (10 credits)**
 - [x] `front()` (1 credits)

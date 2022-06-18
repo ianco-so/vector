@@ -25,6 +25,7 @@ int main( void )
         EXPECT_EQ( vec.capacity(), 0);
         EXPECT_TRUE( vec.empty() );
     }
+
     {
         BEGIN_TEST(tm,"ConstructorSize", "vec(size)");
 
@@ -104,8 +105,6 @@ int main( void )
     // for( auto i{0u} ; i < vec2.size() ; ++i )
     // EXPECT_EQ( (int)i+1, vec2[i] );
     // }
-
-
     {
         BEGIN_TEST(tm, "AssignOperator", "vec1 = vec2");
         // Range = the entire vector.
@@ -121,8 +120,6 @@ int main( void )
         for( auto i{0u} ; i < vec2.size() ; ++i )
             EXPECT_EQ( (int) i+1, vec2[i] );
     }
-
-
         // {
         // BEGIN_TEST(tm, "MoveAssignOperator", "Move Assign Operator");
         // // Range = the entire vector.
@@ -140,8 +137,6 @@ int main( void )
         // for( auto i{0u} ; i < vec2.size() ; ++i )
         // EXPECT_EQ( (int)i+1, vec2[i] );
         // }
-
-
     {
         BEGIN_TEST(tm, "ListInitializerAssign", "vector<int> vec = { 1, 2, 3 }");
         // Range = the entire vector.
@@ -188,7 +183,6 @@ int main( void )
         vec3.pop_back();
         EXPECT_EQ( vec3.size(), 0 );
     }
-
 
     {
         BEGIN_TEST(tm, "Clear", "vec.clear()");
@@ -307,7 +301,6 @@ int main( void )
         EXPECT_EQ( vec2.back(), 'u' );
     }
 
-
     {
         BEGIN_TEST(tm, "AssignCountValue","Assign count value: vec.assign(3, value)");
         // #1 From an empty vector.
@@ -336,9 +329,6 @@ int main( void )
             EXPECT_EQ( value, vec[i] );
     }
 
-
-
-
     {
         BEGIN_TEST(tm, "OperatorBracketsRHS","Operator Brackets RHS: x = vec[i]");
         const which_lib::vector<int> vec { 1, 2, 3, 4, 5 };
@@ -347,7 +337,6 @@ int main( void )
         for ( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( vec[i], vec2[i]);
     }
-
 
     {
         BEGIN_TEST(tm, "OperatorBracketsLHS","Operator Brackets LHS: vec[i] = x");
@@ -359,7 +348,6 @@ int main( void )
         for ( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( vec[i], vec2[i]);
     }
-
 
     {
         BEGIN_TEST(tm, "AtRHS","at() as RHS: x = vec.at(i);");
@@ -377,7 +365,6 @@ int main( void )
 
         EXPECT_TRUE( worked );
     }
-
 
     {
         BEGIN_TEST(tm, "AtLHS","at() as a LHS: vec.at(i) = x;");
@@ -438,7 +425,6 @@ int main( void )
         EXPECT_EQ( vec5.capacity(), 100u );
     }
 
-
     {
         BEGIN_TEST(tm, "ShrinkToFit","shrink_to_fit()");
         // #1 From an empty vector.
@@ -460,7 +446,6 @@ int main( void )
             EXPECT_EQ( e , ++i );
     }
 
-
     {
         BEGIN_TEST(tm, "OperatorEqual","vec1 == vec2");
         // #1 From an empty vector.
@@ -474,7 +459,6 @@ int main( void )
         EXPECT_TRUE( not ( vec == vec4 ) );
     }
 
-
     {
         BEGIN_TEST(tm, "OperatorDifferent","vec1 != =vec2");
         // #1 From an empty vector.
@@ -487,7 +471,6 @@ int main( void )
         EXPECT_NE( vec, vec3 );
         EXPECT_NE( vec,vec4 );
     }
-
 
     {
         BEGIN_TEST(tm, "InsertSingleValueAtPosition","vec.insert(pos, value)");
@@ -504,7 +487,6 @@ int main( void )
         vec.insert( vec.end(), 7 );
         EXPECT_EQ( vec , ( which_lib::vector<int>{ 0, 1, 2, 3, 4, 5, 6, 7 } ) );
     }
-
 
     {
         BEGIN_TEST(tm, "InsertRange","vec.insert( pos, first, last)");
@@ -528,7 +510,6 @@ int main( void )
         EXPECT_EQ( vec1 , ( which_lib::vector<int>{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } ) );
     }
 
-
     {
         BEGIN_TEST(tm, "InsertInitializarList","vec.insert(pos, {1, 2, 3, 4 })");
         // Aux arrays.
@@ -550,7 +531,6 @@ int main( void )
         vec1.insert( vec1.end(), { 6, 7, 8, 9, 10 } );
         EXPECT_EQ( vec1 , ( which_lib::vector<int>{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } ) );
     }
-
 
     {
         BEGIN_TEST(tm, "AssignCountValue2","vec.assign( count, value)");
@@ -578,7 +558,6 @@ int main( void )
         EXPECT_EQ( vec.size() , 8 );
         EXPECT_EQ( vec.capacity() , 8 );
     }
-
 
     {
         BEGIN_TEST(tm, "EraseRange","vec.erase(first, last)");
@@ -615,7 +594,6 @@ int main( void )
         EXPECT_EQ( vec.end() , past_last );
         EXPECT_TRUE( vec.empty() );
     }
-
 
     {
         BEGIN_TEST(tm, "ErasePos","vec.erase(pos)");
@@ -761,7 +739,7 @@ int main( void )
             ++it;
         }
     }
-    
+
     {
         BEGIN_TEST(tm2, "operator++(int)","Postincrement, it++");
 
@@ -794,7 +772,7 @@ int main( void )
         EXPECT_EQ( *it , vec[i] );
         // std::cout << it << " == " << &vec[i] << "\n";
     }
-    
+
     {
         BEGIN_TEST(tm2, "operator--(int)","Postdecrement, it--");
 
@@ -955,7 +933,7 @@ int main( void )
         auto it1 = vec.begin();
         auto it2 = vec.end();
         while( it1 != vec.end() ){
-            std::cout << "it1 = " << *it1 << '\n';
+            //std::cout << "it1 = " << *it1 << '\n';
             EXPECT_TRUE(it2>=it1);
             ++it1;
         }
