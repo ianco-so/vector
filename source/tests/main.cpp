@@ -12,8 +12,7 @@
 // TESTING VECTOR AS A CONTAINER OF INTEGERS
 // ============================================================================
 
-int main( void )
-{
+int main( void ) {
     TestManager tm{ "Testing a vector of integer"};
 
     {
@@ -25,7 +24,6 @@ int main( void )
         EXPECT_EQ( vec.capacity(), 0);
         EXPECT_TRUE( vec.empty() );
     }
-
     {
         BEGIN_TEST(tm,"ConstructorSize", "vec(size)");
 
@@ -35,7 +33,6 @@ int main( void )
         EXPECT_EQ( vec.capacity(), 10);
         EXPECT_FALSE( vec.empty() );
     }
-
     {
         BEGIN_TEST(tm,"ListContructor", "vector<int> vec{1, 2, 3}");
 
@@ -47,7 +44,6 @@ int main( void )
         for( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( (int)i+1, vec[i] );
     }   
-
     {
         BEGIN_TEST(tm,"RangeConstructor", "vector<int> vec{ first, last }");
         // Range = the entire vector.
@@ -70,7 +66,6 @@ int main( void )
         for( auto i{0u} ; i < vec3.size() ; ++i )
             EXPECT_EQ( vec[i+offset], vec3[i] );
     }
-
     {
         BEGIN_TEST(tm, "CopyConstructor","vector<int> vec_clone{ vec }");
         // Range = the entire vector.
@@ -91,20 +86,6 @@ int main( void )
         for( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( (int)i+1, vec2[i] );
     }
-
-    // {
-    // BEGIN_TEST(tm, "MoveConstructor", "move the elements from another");
-    // // Range = the entire vector.
-    // which_lib::vector<int> vec{ 1, 2, 3, 4, 5 };
-    // which_lib::vector<int> vec2( std::move( vec ) );
-
-    // EXPECT_EQ( vec2.size(), 5 );
-    // // EXPECT_FALSE( vec2.empty() );
-
-    // // CHeck whether the copy worked.
-    // for( auto i{0u} ; i < vec2.size() ; ++i )
-    // EXPECT_EQ( (int)i+1, vec2[i] );
-    // }
     {
         BEGIN_TEST(tm, "AssignOperator", "vec1 = vec2");
         // Range = the entire vector.
@@ -150,7 +131,6 @@ int main( void )
         for( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( (int)i+1, vec[i] );
     }
-
     {
         BEGIN_TEST(tm, "Size", "vec.size()");
 
@@ -183,7 +163,6 @@ int main( void )
         vec3.pop_back();
         EXPECT_EQ( vec3.size(), 0 );
     }
-
     {
         BEGIN_TEST(tm, "Clear", "vec.clear()");
         // Range = the entire vector.
@@ -199,7 +178,6 @@ int main( void )
         EXPECT_EQ( vec.capacity(), 5 );
         EXPECT_TRUE( vec.empty() );
     }
-
     {
         BEGIN_TEST(tm, "PushBack", "vec.push_back(value)");
         // #1 From an empty vector.
@@ -230,7 +208,6 @@ int main( void )
         for( auto i{4u} ; i >= vec.size() ; --i )
             EXPECT_EQ( (int)i+1, vec[i] );
     }
-
     {
         BEGIN_TEST(tm, "PopBack", "vec.pop_back()");
         which_lib::vector<int> vec{ 1, 2, 3, 4, 5 };
@@ -243,8 +220,6 @@ int main( void )
                 EXPECT_EQ( (int)i+1, vec[i] );
         }
     }
-
-
     {
         BEGIN_TEST(tm, "Front", "reference front() version: vec.front() = x");
         which_lib::vector<int> vec{ 1, 2, 3, 4, 5 };
@@ -261,7 +236,6 @@ int main( void )
             vec.erase( vec.begin() );
         }
     }
-
     {
         BEGIN_TEST(tm, "FrontConst","const front() version: x = vec.front()");
 
@@ -271,8 +245,6 @@ int main( void )
         const which_lib::vector<char> vec2{ 'a', 'e', 'i', 'o', 'u' };
         EXPECT_EQ( vec2.front(), 'a' );
     }
-
-
     {
         BEGIN_TEST(tm, "Back","reference back() version: vec.back() = x");
         // #1 From an empty vector.
@@ -289,8 +261,6 @@ int main( void )
             vec.pop_back();
         }
     }
-
-
     {
         BEGIN_TEST(tm, "BackConst","const back() version: x = vec.back()");
         // #1 From an empty vector.
@@ -300,7 +270,6 @@ int main( void )
         const which_lib::vector<char> vec2{ 'a', 'e', 'i', 'o', 'u' };
         EXPECT_EQ( vec2.back(), 'u' );
     }
-
     {
         BEGIN_TEST(tm, "AssignCountValue","Assign count value: vec.assign(3, value)");
         // #1 From an empty vector.
@@ -328,7 +297,6 @@ int main( void )
         for ( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( value, vec[i] );
     }
-
     {
         BEGIN_TEST(tm, "OperatorBracketsRHS","Operator Brackets RHS: x = vec[i]");
         const which_lib::vector<int> vec { 1, 2, 3, 4, 5 };
@@ -337,7 +305,6 @@ int main( void )
         for ( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( vec[i], vec2[i]);
     }
-
     {
         BEGIN_TEST(tm, "OperatorBracketsLHS","Operator Brackets LHS: vec[i] = x");
         which_lib::vector<int> vec { 1, 2, 3, 4, 5 };
@@ -348,7 +315,6 @@ int main( void )
         for ( auto i{0u} ; i < vec.size() ; ++i )
             EXPECT_EQ( vec[i], vec2[i]);
     }
-
     {
         BEGIN_TEST(tm, "AtRHS","at() as RHS: x = vec.at(i);");
         const which_lib::vector<int> vec { 1, 2, 3, 4, 5 };
@@ -365,7 +331,6 @@ int main( void )
 
         EXPECT_TRUE( worked );
     }
-
     {
         BEGIN_TEST(tm, "AtLHS","at() as a LHS: vec.at(i) = x;");
         which_lib::vector<int> vec { 1, 2, 3, 4, 5 };
@@ -384,7 +349,6 @@ int main( void )
 
         EXPECT_TRUE( worked );
     }
-
     {
         BEGIN_TEST(tm, "Reserve","reserve()");
         which_lib::vector<int> vec { 1, 2, 3, 4, 5 };
@@ -402,7 +366,6 @@ int main( void )
         }
 
     }
-
     {
         BEGIN_TEST(tm, "Capacity","capacity()");
 
@@ -424,7 +387,6 @@ int main( void )
         which_lib::vector<int> vec5( 100 );
         EXPECT_EQ( vec5.capacity(), 100u );
     }
-
     {
         BEGIN_TEST(tm, "ShrinkToFit","shrink_to_fit()");
         // #1 From an empty vector.
@@ -445,7 +407,6 @@ int main( void )
         for( const auto & e : vec )
             EXPECT_EQ( e , ++i );
     }
-
     {
         BEGIN_TEST(tm, "OperatorEqual","vec1 == vec2");
         // #1 From an empty vector.
@@ -458,7 +419,6 @@ int main( void )
         EXPECT_TRUE( not ( vec == vec3 ) );
         EXPECT_TRUE( not ( vec == vec4 ) );
     }
-
     {
         BEGIN_TEST(tm, "OperatorDifferent","vec1 != =vec2");
         // #1 From an empty vector.
@@ -471,7 +431,6 @@ int main( void )
         EXPECT_NE( vec, vec3 );
         EXPECT_NE( vec,vec4 );
     }
-
     {
         BEGIN_TEST(tm, "InsertSingleValueAtPosition","vec.insert(pos, value)");
         // #1 From an empty vector.
@@ -487,7 +446,6 @@ int main( void )
         vec.insert( vec.end(), 7 );
         EXPECT_EQ( vec , ( which_lib::vector<int>{ 0, 1, 2, 3, 4, 5, 6, 7 } ) );
     }
-
     {
         BEGIN_TEST(tm, "InsertRange","vec.insert( pos, first, last)");
         // Aux arrays.
@@ -509,7 +467,6 @@ int main( void )
         vec1.insert( vec1.end(), source.begin(), source.end() );
         EXPECT_EQ( vec1 , ( which_lib::vector<int>{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } ) );
     }
-
     {
         BEGIN_TEST(tm, "InsertInitializarList","vec.insert(pos, {1, 2, 3, 4 })");
         // Aux arrays.
@@ -531,7 +488,6 @@ int main( void )
         vec1.insert( vec1.end(), { 6, 7, 8, 9, 10 } );
         EXPECT_EQ( vec1 , ( which_lib::vector<int>{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } ) );
     }
-
     {
         BEGIN_TEST(tm, "AssignCountValue2","vec.assign( count, value)");
         // Initial vector.
@@ -558,7 +514,6 @@ int main( void )
         EXPECT_EQ( vec.size() , 8 );
         EXPECT_EQ( vec.capacity() , 8 );
     }
-
     {
         BEGIN_TEST(tm, "EraseRange","vec.erase(first, last)");
         // Initial vector.
@@ -594,7 +549,6 @@ int main( void )
         EXPECT_EQ( vec.end() , past_last );
         EXPECT_TRUE( vec.empty() );
     }
-
     {
         BEGIN_TEST(tm, "ErasePos","vec.erase(pos)");
         // Initial vector.
@@ -653,7 +607,6 @@ int main( void )
         it = vec4.begin();
         EXPECT_EQ( *it , vec4[0] );
     }
-
     {
         BEGIN_TEST(tm2, "cbegin","vec.cbegin()");
 
@@ -678,7 +631,6 @@ int main( void )
         cit = vec4.cbegin();
         EXPECT_EQ( *cit , vec4[0] );
     }
-
     {
         BEGIN_TEST(tm2, "end","vec.end()");
 
@@ -701,7 +653,6 @@ int main( void )
         it = vec4.end();
         EXPECT_EQ( it , vec4.end() );
     }
-
     {
         BEGIN_TEST(tm2, "cend","vec.cend()");
 
@@ -724,7 +675,6 @@ int main( void )
         it = vec4.cend();
         EXPECT_EQ( it , vec4.cend() );
     }
-
     {
         BEGIN_TEST(tm2, "operator++()","Preincrement, ++it");
 
@@ -739,7 +689,6 @@ int main( void )
             ++it;
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator++(int)","Postincrement, it++");
 
@@ -754,7 +703,6 @@ int main( void )
             it++;
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator--()","Predecrement, --it");
 
@@ -772,7 +720,6 @@ int main( void )
         EXPECT_EQ( *it , vec[i] );
         // std::cout << it << " == " << &vec[i] << "\n";
     }
-
     {
         BEGIN_TEST(tm2, "operator--(int)","Postdecrement, it--");
 
@@ -788,7 +735,6 @@ int main( void )
         }
         EXPECT_EQ( *it , vec[i] );
     }
-
     {
         BEGIN_TEST(tm2, "operator*()"," x = *it1");
 
@@ -799,7 +745,6 @@ int main( void )
         while( it != vec.end() )
             EXPECT_EQ( *it++ , i++ );
     }
-
     {
         BEGIN_TEST(tm2, "operator-()","it1 - it2");
 
@@ -816,7 +761,6 @@ int main( void )
             it1++;
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator+(int, iterator)","it = 2 + it");
 
@@ -830,7 +774,6 @@ int main( void )
             // std::cout << (i+it) << " == " << &vec[i] << "\n";
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator+(iterator, int)","it = it + 2");
 
@@ -844,7 +787,6 @@ int main( void )
             // std::cout << (i+it) << " == " << &vec[i] << "\n";
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator-(iterator, int)","it = it - 2");
 
@@ -857,7 +799,6 @@ int main( void )
             EXPECT_EQ( *(it-i) , vec[vec.size()-i-1] );
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator+=()","it += n");
 
@@ -871,7 +812,6 @@ int main( void )
             EXPECT_EQ( *it , vec[i] );
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator-=()","it -= n");
 
@@ -885,7 +825,6 @@ int main( void )
             EXPECT_EQ( *it , vec[i] );
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator<()","it1 < it2");
 
@@ -898,7 +837,6 @@ int main( void )
             ++it1;
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator>()","it1 > it2");
 
@@ -911,7 +849,6 @@ int main( void )
             ++it1;
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator<=()","it1 <= it2");
 
@@ -924,7 +861,6 @@ int main( void )
             ++it1;
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator>=()","it1 >= it2");
 
@@ -938,7 +874,6 @@ int main( void )
             ++it1;
         }
     }
-
     {
         BEGIN_TEST(tm2, "operator==()","it1 == it2");
 
@@ -949,7 +884,6 @@ int main( void )
         while( it1 != vec.end() )
             EXPECT_EQ( it1++ , it2++ );
     }
-
     {
         BEGIN_TEST(tm2, "operator!=()","it1 != it2");
 

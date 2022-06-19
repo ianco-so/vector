@@ -1,4 +1,7 @@
-﻿# Identificação Pessoal
+﻿# Descrição
+Essa é uma implementação de uma Estrutura de Dados Abstrata, mais especificamente uma Lista Dinamica (chamada aqui de vector).
+
+# Identificação do grupo
 
 Preencha os dados abaixo para identificar a autoria do trabalho.
 
@@ -9,6 +12,53 @@ Preencha os dados abaixo para identificar a autoria do trabalho.
 - Nome: *Lucas Vinícius Góis Nogueira*
 - Email: *lucas.nogueira.072@ufrn.edu.br*
 - Turma: *01*
+
+# Como rodar
+
+Certifique-se de ter o `cmake` instaldo em sua máquina e/ou o `g++`
+
+## Usando `cmake`
+
+Usando o Linux ou o Windows com o Power Shell, a partir da página principal do repositório local (onde está localizado este arquivo) faça:
+
+```
+cmake -S source -B build
+cmake --build build
+```
+Logo após a compilação, para executar os testes gerados use os comandos:
+
+```
+cd build
+make run_tests
+```
+
+## Usando compilação manual com `g++`
+
+É possível compilar o programa usando apenas o `g++`. Para isso use os comandos abaixo a partir da pasta principal do repositório local
+
+No Linux:
+```
+mkdir -p build
+g++ -Wall -std=c++11 -I source/include -I source/tmanager_lib source/tests/main.cpp source/tmanager_lib/test_manager.cpp -o build/run_tests
+```
+
+No Windows com Power Shell:
+```
+mkdir -p build
+g++ -Wall -std=c++11 -I source/include -I source/tests/include/tm source/tests/main.cpp source/tests/include/tm/test_manager.cpp -o build/run_tests
+```
+
+Após a compilação, para executar os testes gerados, use os comandos:
+
+No Linux:
+```
+./build/run_tests
+```
+
+No Windows com Power Shell:
+```
+.\build\run_tests.exe
+```
 
 # Indique quais métodos das classes abaixo foram implementados
 
