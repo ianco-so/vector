@@ -34,15 +34,8 @@ make run_tests
 
 ## Usando compilação manual com `g++`
 
-É possível compilar o programa usando apenas o `g++`. Para isso use os comandos abaixo a partir da pasta principal do repositório local
+É possível compilar o programa usando apenas o `g++`. Para isso use os comandos abaixo a partir da pasta principal do repositório local no Linux ou no Windows com o Power Shell.
 
-No Linux:
-```
-mkdir -p build
-g++ -Wall -std=c++11 -I source/include -I source/tmanager_lib source/tests/main.cpp source/tmanager_lib/test_manager.cpp -o build/run_tests
-```
-
-No Windows com Power Shell:
 ```
 mkdir -p build
 g++ -Wall -std=c++11 -I source/include -I source/tests/include/tm source/tests/main.cpp source/tests/include/tm/test_manager.cpp -o build/run_tests
@@ -57,8 +50,11 @@ No Linux:
 
 No Windows com Power Shell:
 ```
-.\build\run_tests.exe
+./build/run_tests.exe
 ```
+# Limitações encontradas
+
+Como todos os testes foram feitos com inteiros e/ou com caracteres é possível que o vector quebre com outros tipos de dados.
 
 # Indique quais métodos das classes abaixo foram implementados
 

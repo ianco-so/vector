@@ -229,11 +229,8 @@ namespace sc {
              * @param count The capacity of the vector.
             */
             explicit vector(size_type count = 0) {
-                this->m_capacity = count;
-                this->m_end = count;
-                this->m_storage.reset(new value_type[this->m_capacity]);
-                iterator it = this->begin();
-                std::fill(it, it+this->m_capacity, *new value_type);
+                this->m_end = this->m_capacity = count;
+                this->m_storage.reset(new value_type[this->capacity()]);
             }
             /*! Default Destructor.
              * @brief Destroys the vector.
@@ -247,9 +244,7 @@ namespace sc {
                 this->m_capacity = other.capacity();
                 this->m_end = other.size();
                 this->m_storage.reset(new value_type[this->capacity()]);
-                const_iterator other_it = other.cbegin();
-                iterator it_this = this->begin();
-                std::copy(other_it, other_it+this->size(), it_this);
+                std::copy(other.cbegin(), other.cend(), this->begin());
             }
             /* There are no tests for this move constructor.
                 vector(vector&& other) {
@@ -271,9 +266,7 @@ namespace sc {
                     this->m_capacity = rhs.capacity();
                     this->m_end = rhs.size();
                     this->m_storage.reset(new value_type[this->capacity()]);
-                    const_iterator rhs_it = rhs.cbegin();
-                    iterator it_this = this->begin();
-                    std::copy(rhs_it, rhs_it+this->size(), it_this);
+                    std::copy(rhs.cbegin(), rhs.cend(), this->begin());
                 }
                 return *this;
             }
@@ -295,11 +288,9 @@ namespace sc {
              * @param il The list of elements to initialize the vector with.
             */
             vector(const std::initializer_list<T>& il) {
-                this->m_capacity = il.size();
-                this->m_end = il.size();
+                this->m_end = this->m_capacity = il.size();
                 this->m_storage.reset(new value_type[this->capacity()]);
-                iterator it = this->begin();
-                std::copy(il.begin(), il.end(), it);
+                std::copy(il.begin(), il.end(), this->begin());
             }
             /*! Range constructor.
              * @brief Creates a vector from a range of elements.
@@ -348,7 +339,7 @@ namespace sc {
             /// Removes the last element from the vector.
             void pop_back(void) { 
                 if (this->empty()) throw std::out_of_range("vector::pop_back(): vector is empty");
-                this->m_storage[this->size()-1] = *new value_type(0u);
+                this->m_storage[this->size()-1] = value_type();
                 this->m_end--;
             }
             /*! 
@@ -646,7 +637,7 @@ namespace sc {
     template <typename T>
     bool equal( const vector<T> &va, const vector<T>&vb ){
         if(va.size() != vb.size()) return false;
-        for(auto i = 0; i < va.size(); ++i) if(va.at(i) != vb.at(i)) return false;
+        for(auto i = 0ul; i < va.size(); ++i) if(va.at(i) != vb.at(i)) return false;
         return true;
     }
 } // namespace sc.
