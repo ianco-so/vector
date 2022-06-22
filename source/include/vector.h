@@ -246,16 +246,19 @@ namespace sc {
                 this->m_storage.reset(new value_type[this->capacity()]);
                 std::copy(other.cbegin(), other.cend(), this->begin());
             }
-            /* There are no tests for this move constructor.
-                vector(vector&& other) {
-                    this->m_capacity = other.capacity();
-                    this->m_end = other.size();
-                    this->m_storage.reset(new value_type[this->capacity()]);
-                    const_iterator other_it = other.cbegin();
-                    iterator it_this = this->begin();
-                    std::copy(other_it, other_it+this->size(), it_this);
-                }   
+            /*! Move constructor.
+             * @brief Moves the contents of the other vector to this one.
+             * @param other The vector to move.
             */
+            vector(vector&& other) {
+                this->m_capacity = other.capacity();
+                this->m_end = other.size();
+                this->m_storage.reset(new value_type[this->capacity()]);
+                std::copy(other.cbegin(), other.cend(), this->begin());
+                other.clear();
+                other.shrink_to_fit();
+            }   
+    
             /*! Copy assignment operator.
              * @brief Assigns a copy of the vector to the current one.
              * @param rhs The vector to copy.
@@ -270,19 +273,18 @@ namespace sc {
                 }
                 return *this;
             }
-            /* There are no tests for this move assignment operator (constructor)
-                vector& operator=(vector&& rhs) {
-                    if(&this != &rhs) {
-                        this->m_capacity = rhs.capacity();
-                        this->m_end = rhs.size();
-                        this->m_storage.reset(new value_type[this->capacity()]);
-                        const_iterator rhs_it = rhs.cbegin();
-                        iterator it_this = this->begin();
-                        std::copy(rhs_it, rhs_it+this->size(), it_this);
-                    }
-                    return *this;
+
+            vector& operator=(vector&& rhs) {
+                if(this != &rhs) {
+                    this->m_capacity = rhs.capacity();
+                    this->m_end = rhs.size();
+                    this->m_storage.reset(new value_type[this->capacity()]);
+                    std::copy(rhs.cbegin(), rhs.cend(), this->begin());
+                    rhs.clear();
+                    rhs.shrink_to_fit();
                 }
-            */
+                return *this;
+            }
             /*! Ilicializer list constructor.
              * @brief Creates a vector from a list of elements.
              * @param il The list of elements to initialize the vector with.

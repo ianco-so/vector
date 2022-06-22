@@ -38,7 +38,7 @@ make run_tests
 
 ```
 mkdir -p build
-g++ -Wall -std=c++11 -I source/include -I source/tests/include/tm source/tests/main.cpp source/tests/include/tm/test_manager.cpp -o build/run_tests
+g++ -Wall -pedantic -std=c++17 -I source/include -I source/tests/include/tm source/tests/main.cpp source/tests/include/tm/test_manager.cpp  source/tests/move_semantics_tests.cpp  source/tests/iterator_tests.cpp -o build/run_tests
 ```
 
 Após a compilação, para executar os testes gerados, use os comandos:
@@ -52,9 +52,6 @@ No Windows com Power Shell:
 ```
 ./build/run_tests.exe
 ```
-# Limitações encontradas
-
-Como todos os testes foram feitos com inteiros e/ou com caracteres é possível que o vector quebre com outros tipos de dados.
 
 # Indique quais métodos das classes abaixo foram implementados
 
